@@ -28,8 +28,9 @@ def decode_and_debug_tensor(input_ids, model_id: str, start_idx: int = 0, end_id
 if __name__ == "__main__":
     TENSOR_FILE = "encoded_context.pt"
     MODEL_ID = "davidkim205/ko-gemma-2-9b-it"
-
+    import gc
     input_ids = load_tensor_file(TENSOR_FILE)
 
     print("\n=== Debugging Decoding ===")
     decode_and_debug_tensor(input_ids, MODEL_ID, start_idx=0, end_idx=500)
+
