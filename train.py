@@ -14,6 +14,9 @@ from layers.final_model import GemmaForCausalLM
 from torch.cuda.amp import GradScaler, autocast  # AMP 관련 임포트
 from torch.nn.utils import clip_grad_norm_
 
+
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
 # ====================================================
 # 커스텀 Dataset 정의
 # ====================================================
@@ -72,6 +75,9 @@ def train(args):
 
     # AMP 스케일러 초기화
     scaler = GradScaler()
+
+
+    print((count_parameters(model)))
 
     # 학습 루프
     for epoch in range(1, 100):
